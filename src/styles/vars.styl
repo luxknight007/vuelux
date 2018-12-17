@@ -1,0 +1,70 @@
+/*
+colors
+========================
+*/
+
+// Number Colors
+
+$vl-primary = 31, 116, 255
+$vl-secondary = 121, 49, 177
+$vl-danger = 255, 71, 87
+$vl-success = 70, 201, 58
+$vl-warning = 255,186,0
+$vl-dark = 30, 30, 30
+$vl-light = 245, 245, 245
+
+// Brand colors
+
+$vl-primary-color = rgb($vl-primary)
+$vl-secondary-color = rgb($vl-secondary)
+
+
+// App level
+
+$vl-danger-color = rgb($vl-danger)
+$vl-success-color = rgb($vl-success)
+$vl-warning-color = rgb($vl-warning)
+$vl-dark-color = rgb($vl-dark)
+$vl-light-color = rgb($vl-light)
+
+$vl-colors := {
+  primary: $vl-primary-color,
+  secondary: $vl-secondary-color,
+  danger: $vl-danger-color,
+  success: $vl-success-color,
+  warning: $vl-warning-color,
+  dark: $vl-dark-color,
+  light: $vl-light-color
+}
+
+:root {
+  --primary: $vl-primary
+  --danger: $vl-danger
+  --success: $vl-success
+  --dark: $vl-dark
+  --warning: $vl-warning
+}
+
+var(colorx, alpha = 1)
+  unquote("rgba(var(--"+colorx+"), "+alpha+")")
+
+varx(colorx)
+  unquote("var(--"+colorx+")")
+
+
+// , $vl-secondary, $vl-danger, $vl-success, $vl-warning, $vl-dark, $vl-light
+
+
+// global vars
+
+$vl-radio := 6px
+$vl-disabled-opacity := .5
+$vl-transition := all .25s ease
+$vl-border := 1px solid rgba(0, 0, 0, 0.1)
+$vl-label-color := rgba(0,0,0,.6)
+$vl-box-shadow := 0px 5px 20px 0px rgba(0, 0, 0, 0.05)
+$vl-background := rgb(255, 255, 255)
+
+// select vars
+
+$border-color :=  rgb(255, 255, 255)

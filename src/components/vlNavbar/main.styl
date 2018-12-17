@@ -1,0 +1,162 @@
+.vl-navbar
+  clear both
+  display: flex
+  align-items: center
+  // padding: 0px 7px
+  box-shadow: 0px 4px 20px 0px rgba(0,0,0,.05)
+  width: 100%
+  z-index: 10000
+  position: relative
+  button
+    margin: 0px
+
+.vl-navbar--item
+  display block
+  position relative
+  transition: all .25s ease
+  z-index: 1000
+  &.is-active-item
+    .vl-navbar-after
+      width: 100%
+  &:hover
+    .vl-navbar-submenu
+      opacity: 1
+      visibility: visible
+
+  a
+    font-size: .8rem
+    padding: 10px 12px
+    display: block
+    color inherit
+    text-decoration: none !important
+    position relative
+    z-index: 100
+    &:hover
+      ~ .vl-navbar-after
+        width: 100%
+  .vl-navbar-after
+    width: 0%
+    height 2px
+    left 50%
+    bottom: 0px
+    transform: translate(-50%)
+    background: $vl-primary
+    position: absolute
+    transition: all .25s ease
+    z-index: 10
+
+
+.vl-navbar--title
+  font-size: 1.1rem
+  padding: 0px
+  padding-left: 10px
+  padding-right: 10px
+  color: inherit
+.vl-navbar--items
+  position relative
+
+.vl-navbar-submenu
+  position: absolute
+  visibility: hidden
+  opacity: 0
+  background: rgb(255,255,255)
+  z-index: 1000
+  padding-left 0px
+  width: 200px
+  .vl-navbar-after
+    display: none
+  .vl-navbar--items
+    a
+      text-align: left
+
+
+// TYPE: FLAT
+
+.vl-navbar-flat
+  box-shadow: none
+  .vl-navbar-after
+    display: none
+
+// TYPE: FUND
+
+.vl-navbar-fund
+  box-shadow: none
+  .vl-navbar-after
+    width 100%
+    height 0%
+    opacity: .1
+  a
+    &:hover
+      ~ .vl-navbar-after
+        height: 100%
+  .vl-navbar--item
+    &.is-active-item
+      .vl-navbar-after
+        height: 100%
+
+// TYPE: BORDER
+
+.vl-navbar-border
+  box-shadow: none
+  border 1px solid rgba(0,0,0,.05)
+  .vl-navbar--item
+    border-left 1px solid rgba(0,0,0,.05)
+  .vl-navbar-after
+    height: 1px
+    bottom: -1px
+
+// TYPE: GRADIENT
+.vl-navbar-gradient
+  .vl-navbar--item
+    margin: 4px 3px
+    a
+      padding: 6px 12px
+  .vl-navbar-after
+    display: none
+
+// TYPE: SHADOW
+.vl-navbar-shadow
+  box-shadow: none
+  .vl-navbar--item
+    background: rgba(0,0,0,.05)
+    &.is-active-item
+      background: rgb(255,255,255)
+      border-radius: 4px
+      box-shadow: 0px 5px 20px 0px rgba(0,0,0,.07)
+  .vl-navbar-after
+    display: none
+
+
+for colorx in $vl-colors
+  .vl-navbar
+    .vl-navbar-item-{colorx}
+      &.is-active-item
+        color: $vl-colors[colorx]
+      &:hover
+        >a
+          color: $vl-colors[colorx]
+
+  .vl-navbar-submenu
+    .vl-navbar-item-{colorx}
+      &.is-active-item
+        color: $vl-colors[colorx]
+      &:hover
+        color: $vl-colors[colorx]
+
+  &.vl-navbar-gradient
+    .vl-navbar-item-{colorx}
+      border-radius: 4px
+      &.is-active-item
+        border-radius: 6px
+        color rgb(255,255,255)
+        background: rgb(100,0,100)
+        if colorx == 'danger' {
+          background-image: linear-gradient(30deg, var(colorx, 1) 0%, var(colorx, .5) 100%)
+        }
+        else if colorx == 'dark' {
+          background-image: linear-gradient(30deg, var(colorx, 1) 0%, var(colorx, .5) 100%)
+        }
+        else {
+          background-image: linear-gradient(30deg, var(colorx, 1) 0%, var(colorx, .5) 100%)
+        }
+        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3)
