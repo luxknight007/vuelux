@@ -11458,7 +11458,7 @@ var Vuelux = {
       Vue.use(vlComponent);
     });
     functions(Vue);
-    Vue.prototype.$vs.easing = easing;
+    Vue.prototype.$vl.easing = easing;
   }
 };
 

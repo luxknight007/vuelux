@@ -23,7 +23,7 @@ const Vuelux = {
 
     vlFunctions(Vue)
 
-    Vue.prototype.$vs.easing = easing
+    Vue.prototype.$vl.easing = easing
   }
 }
 if (typeof window !== 'undefined' && window.Vue) {
