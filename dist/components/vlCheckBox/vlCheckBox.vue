@@ -1,0 +1,133 @@
+<template lang="html">
+  <div
+    :class="[`vl-checkbox-${color}`, `vl-checkbox-${size}`]"
+    class="vl-component con-vl-checkbox"
+  >
+    <input
+      v-bind="$attrs"
+      :checked="isChecked || $attrs.checked"
+      :value="value"
+      type="checkbox"
+      class="vl-checkbox--input"
+      v-on="listeners"
+    >
+    <span
+      :style="style"
+      class="checkbox_x vl-checkbox"
+    >
+      <span
+        :style="style_check"
+        class="vl-checkbox--check"
+      >
+        <VlIcon
+          :icon="icon"
+          :icon-pack="iconPack"
+          class="vl-checkbox--icon "
+        />
+      </span>
+    </span>
+    <span class="con-slot-label">
+      <slot />
+    </span>
+  </div>
+</template>
+
+<script>
+import _color from '../../utils/color.js'
+export default {
+  name:'VlCheckbox',
+  inheritAttrs: false,
+  props:{
+    color:{
+      default:'primary',
+      type:String,
+    },
+    value:{},
+    icon:{
+      default:'check',
+      type:String
+    },
+    iconPack:{
+      default:'material-icons',
+      type:String
+    },
+    vlValue:{
+      type:[Boolean,Array,String,Number,Object],
+      default:false
+    },
+    size:{
+      default: 'default',
+      type: String
+    }
+  },
+  computed:{
+    style_check(){
+      return {
+        background: this.isChecked?_color.getColor(this.color,1):null,
+      }
+    },
+    style(){
+      return {
+        border: `2px solid ${this.isChecked?_color.getColor(this.color,1):'rgb(180, 180, 180)'}`,
+      }
+    },
+    listeners(){
+      return {
+        ...this.$listeners,
+        change: (evt) => {
+          this.toggleValue(evt)
+        }
+      }
+    },
+    isChecked(){
+      return this.isArrayx() ? this.isArrayIncludes() : this.value
+    },
+  },
+  methods:{
+    giveColor(color){
+      return _color.rColor(color)
+    },
+    toggleValue(evt){
+      if(this.isArrayx()){
+        this.setArray()
+      } else if (typeof(this.vlValue) == 'string' ) {
+        this.setValueString()
+      }
+      else {
+        this.$emit('input',!this.value)
+        this.$emit('change',evt)
+      }
+    },
+    setArray(){
+      // Copy Array
+      const value = this.value.slice(0)
+      if(this.isArrayIncludes()){
+        value.splice(value.indexOf(this.vlValue),1)
+        this.$emit('input', value)
+        this.$emit('change', value)
+      } else {
+        value.push(this.vlValue)
+        this.$emit('input', value)
+        this.$emit('change', value)
+      }
+    },
+    setValueString(){
+      if(this.value == this.vlValue){
+        this.$emit('input', null)
+        this.$emit('change', null)
+      } else {
+        this.$emit('input', this.vlValue)
+        this.$emit('change', this.vlValue)
+      }
+    },
+    isArrayIncludes(){
+      let modelx = this.value
+      let value = this.vlValue
+      return modelx.includes(value)
+    },
+    isArrayx(){
+      return Array.isArray(this.value)
+    }
+  }
+}
+</script>
