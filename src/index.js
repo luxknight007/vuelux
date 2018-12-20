@@ -6,12 +6,12 @@ import vlTheme from './utils/theme.js'
 
 const Vuelux = {
   install(Vue, options) {
-    //change defaults colors, Not Soport SSR, else = Stylus vars
+    //change defaults colors, Not Support SSR, else = Stylus vars
     if(options){
       if(options.hasOwnProperty('theme')){
         if(options.theme.hasOwnProperty('colors')){
           if (typeof window !== 'undefined') {
-            vlTheme.vsfunction(options.theme.colors, options.server)
+            vlTheme.vlfunction(options.theme.colors, options.server)
           }
         }
       }

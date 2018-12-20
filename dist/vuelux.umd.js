@@ -11452,12 +11452,12 @@ var vlFunctions = {
 
 var Vuelux = {
   install: function install(Vue, options) {
-    //change defaults colors, Not Soport SSR, else = Stylus vars
+    //change defaults colors, Not Support SSR, else = Stylus vars
     if (options) {
       if (options.hasOwnProperty('theme')) {
         if (options.theme.hasOwnProperty('colors')) {
           if (typeof window !== 'undefined') {
-            theme.vsfunction(options.theme.colors, options.server);
+            theme.vlfunction(options.theme.colors, options.server);
           }
         }
       }
