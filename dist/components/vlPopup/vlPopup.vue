@@ -42,6 +42,22 @@
         >
           <slot />
         </div>
+        <footer v-if="type=='form'" class="vl-popup--footer">
+          <VlButton
+            :color="colorSave"
+            :type="buttonType"
+            @click="acceptForm"
+          >
+            {{acceptFormText}}
+          </VlButton>
+          <VlButton
+            :color="colorCancel"
+            :type="buttonType"
+            @click="cancelForm"
+          >
+            {{cancelFormText}}
+          </VlButton>
+        </footer>
       </div>
     </div>
   </Transition>
@@ -52,15 +68,35 @@ import _color from '../../utils/color.js'
 export default {
   name:'VlPopup',
   props:{
-    color:{
+    colorCancel:{
+      default:'dark',
+      type:String
+    },
+    acceptFormText:{
+      default:'Save',
+      type:String
+    },
+    cancelFormText:{
+      default:'Cancel',
+      type:String
+    },
+    colorSave:{
       default:'primary',
+      type:String
+    },
+    buttonType:{
+      default:'filled',
       type:String
     },
     active: {
       default:false,
-      type: Boolean
+      type:Boolean
     },
     title:{
+      default:'popup',
+      type:String
+    },
+    type:{
       default:'popup',
       type:String
     },
@@ -123,6 +159,13 @@ export default {
     this.insertBody()
   },
   methods:{
+    acceptForm(){
+      this.$emit('vl-accept', true)
+    },
+    cancelForm(){
+      this.$emit('update:active',false)
+      this.$emit('close', false)
+    },
     giveColor(color){
       return _color.rColor(color)
     },

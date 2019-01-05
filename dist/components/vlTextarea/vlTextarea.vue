@@ -28,7 +28,10 @@ export default {
   name: "VlTextarea",
   inheritAttrs:false,
   props:{
-    value:{},
+    value:{
+      default:'',
+      type: String
+    },
     label:{
       default:null,
       type: String
