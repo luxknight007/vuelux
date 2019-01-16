@@ -3,7 +3,7 @@
     <div
       v-show="active"
       ref="con"
-      :class="[`vl-popup-${color}`,{'fullscreen':fullscreen}]"
+      :class="[`vl-popup-${color}`,{'fullscreen':fullscreen}, {'confirmation':confirmation}]"
       class="vl-component con-vl-popup"
       @click="close($event,true)"
     >
@@ -50,6 +50,15 @@
           >
             {{acceptFormText}}
           </VlButton>
+          <VlButton
+            :color="colorCancel"
+            :type="buttonType"
+            @click="cancelForm"
+          >
+            {{cancelFormText}}
+          </VlButton>
+        </footer>
+        <footer v-if="type=='basic'" class="vl-popup--footer">
           <VlButton
             :color="colorCancel"
             :type="buttonType"
@@ -105,6 +114,10 @@ export default {
       type:Boolean
     },
     fullscreen:{
+      default:false,
+      type:Boolean
+    },
+    confirmation:{
       default:false,
       type:Boolean
     },

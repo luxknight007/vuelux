@@ -5,6 +5,7 @@
         :v-bind="$attrs"
         :style="styleImage"
         class="vl-image--img"
+        @click="selected($attrs)"
       />
     </div>
     <img
@@ -29,6 +30,11 @@ export default {
       return {
         backgroundImage: `url(${this.src})`
       }
+    }
+  },
+  methods: {
+    selected (attrs) {
+      this.$emit('selected', attrs)
     }
   }
 }
