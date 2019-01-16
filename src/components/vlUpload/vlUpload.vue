@@ -353,6 +353,7 @@
             }
           } else {
             self.$emit('on-success',e)
+            self.$emit('on-data',xhr.response)
           }
         }
 
