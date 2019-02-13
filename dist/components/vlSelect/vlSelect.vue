@@ -236,7 +236,7 @@ export default {
         if(this.active){
           utils.insertBody(this.$refs.vlSelectOptions)
           setTimeout( () => {
-            this.$children[0].focusValue(0)
+            
             this.$children.forEach((item)=>{
               if (item.focusValue) {
                 item.focusValue()
@@ -245,23 +245,25 @@ export default {
             if(this.$refs.ulx.scrollHeight >= 260) this.scrollx = true
           }, 100);
         } else {
-          let [parent] = document.getElementsByTagName('body')
-          parent.removeChild(this.$refs.vlSelectOptions)
+          let [parent] = document.getElementsByClassName('input-select-con')
+          if (parent.childNodes.length >= 3) {
+            parent.removeChild(parent.childNodes[2])
+          }
         }
       })
     },
   },
   mounted(){
-    // this.$refs.inputselect.value = this.value
-    // console.log(this.$refs.inputselect.value ,'==========', this.value)
     this.changeValue()
     if (this.active) {
       utils.insertBody(this.$refs.vlSelectOptions)
     }
   },
   beforeDestroy() {
-    let [parent] = document.getElementsByTagName('body')
-    parent.removeChild(this.$refs.vlSelectOptions)
+    let [parent] = document.getElementsByClassName('input-select-con')
+    if (parent.childNodes.length >= 3) {
+      parent.removeChild(parent.childNodes[2])
+    }
   },
   updated(){
     if(!this.active){

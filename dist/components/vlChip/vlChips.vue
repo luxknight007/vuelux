@@ -63,13 +63,13 @@ export default {
   methods:{
     addItem(){
       // this.itemsx.push(this.newChip)
-      let valueOld = this.value
+      let valueOld = this.value ? this.value : []
       valueOld.push(this.newChip)
       this.$emit('input', valueOld)
       this.newChip = ''
     },
     removeTotalItems(){
-      let valueOld = this.value
+      let valueOld = this.value ? this.value : []
       valueOld.splice(0, this.value.length);
       this.$emit('input', valueOld)
     }

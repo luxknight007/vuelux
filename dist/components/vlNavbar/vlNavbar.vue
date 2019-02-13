@@ -29,6 +29,10 @@ export default {
     textColor: {
       type:String,
       default:'rgb(40,40,40)',
+    },
+    background: {
+      type: String,
+      default: null
     }
   },
   computed:{
@@ -37,6 +41,9 @@ export default {
         return {
           background: `rgb(${_color.changeColor(this.color)})`
         }
+      }
+      if (this.background) {
+        return this.background
       }
       return {
         background: _color.getColor(this.color)
