@@ -225,12 +225,13 @@ export default {
     },
     getItems(min, max) {
       let items = []
-
-      this.data.forEach((item, index) => {
-        if(index >= min && index < max) {
-          items.push(item)
-        }
-      })
+      if (!_.isEmpty(this.data)) {
+        this.data.forEach((item, index) => {
+          if(index >= min && index < max) {
+            items.push(item)
+          }
+        })
+      }
       return items
     },
     sort(key, active) {

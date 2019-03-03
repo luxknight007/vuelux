@@ -145,6 +145,10 @@ export default {
       default:'close',
       type:String
     },
+    vlWidth: {
+      default:'600px',
+      type:String
+    }
   },
   computed:{
     styleHeader(){
@@ -164,7 +168,8 @@ export default {
     },
     stylePopup(){
       return {
-        background: _color.getColor(this.backgroundColorPopup,1)
+        background: _color.getColor(this.backgroundColorPopup,1),
+        width: this.vlWidth
       }
     }
   },
