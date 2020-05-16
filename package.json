@@ -1,6 +1,6 @@
 {
   "name": "vuelux",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/vuelux.common.js",
   "unpkg": "dist/vuelux.umd.min.js",
   "jsdelivr": "dist/vuelux.umd.min.js",
@@ -51,6 +51,6 @@
     "not ie <= 8"
   ],
   "publishConfig": {
-    "registry": "http://localhost:8081/repository/npm-private/"
+    "registry": "http://192.168.254.100:8081/repository/npm-private/"
   }
 }
